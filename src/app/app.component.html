@@ -1,14 +1,25 @@
 <div class="container">
   <h1>Angular components</h1>
-  <!-- <app-styled-form></app-styled-form> -->
-  <app-post-form
-  (onAdd)="updatePosts($event)"
-  >
+  <p>Time: {{time | date:'HH:mm:ss'}}</p>
 
-  </app-post-form>
-  <hr>
-  <app-post
-    *ngFor="let post of posts"
-    [post]="post"
-  ></app-post>
+  <p>Count: {{appCounterService.count}}</p>
+  <button (click)="appCounterService.increase()">+</button>
+  <!-- <app-styled-form></app-styled-form> -->
+  <!-- <app-two-way-binding></app-two-way-binding> -->
+  <!-- <app-input-field-simple></app-input-field-simple> -->
+  <!-- <app-cycle></app-cycle> -->
+  <app-post-form (onAdd)="updatePosts($event)"> </app-post-form>
+  <hr />
+  <label>Search</label><input [(ngModel)]="value"/>
+  <app-post *ngFor="let post of posts | filterBy:value" [post]="post">
+    <small>Length: {{ post.text.length }}</small
+      ><br />
+    <div #info>
+     
+      <small *ngIf="post.text.length > 10; else short">Long post</small>
+      <ng-template #short>
+        <small>Small post</small>
+      </ng-template>
+    </div>
+  </app-post>
 </div>

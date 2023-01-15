@@ -1,5 +1,8 @@
 <div class="card">
     <h2>{{post.title}}</h2>
     <p>{{post.text}}</p>
-    <p>This text is red</p>
+    <p appMakered="green">This text is red</p>
+    <p>10 multiplied by 5 is {{10 | multBy:5}}</p>
+
+    <ng-content></ng-content>
 </div>
